@@ -25,6 +25,7 @@
   , "jquery/src/effects.js"
   , "jquery/src/offset.js"
   , "jquery/src/dimensions.js"
+  , "jquery/jquery-ui.js"
   , "src/monkeypatch-msie.js"
   , "src/get-bookmarklet-url.js"
   , "src/localization.js"
