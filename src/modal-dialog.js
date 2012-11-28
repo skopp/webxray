@@ -153,15 +153,27 @@
       var input = options.input;
       input.deactivate();
 
-      alert(JSON.stringify(options.startHTML));
-      var container = $('<div></div>').append(
-        $('<textarea></textarea>', {id: 'remix-node-text'})
-      );
+      var container = $('<div></div>');
+      var editbox = $('<div></div>', {
+        id: 'remix-node-text',
+        width: '95%', height: '95%',
+      });
+
+      container.css('display', 'none');
+      container.append(editbox);
+      $(document.body).append(container);
+
+      var editor = ace.edit("remix-node-text");
+      editor.setTheme("ace/theme/monokai");
+      editor.getSession().setMode("ace/mode/xml");
+      editor.setValue(options.startHTML);
 
       container.dialog({
         modal: true,
         show: 'fade',
         hide: 'fade',
+        width: 600,
+        height: 300,
         title: 'Remix Node',
         buttons: [
           {
@@ -179,8 +191,12 @@
         ],
         close: function() {
           options.onDone(container);
+        },
+        resize: function() {
+          editor.resize();
         }
       });
+
     },
     morphDialogIntoElement: function(options) {
       var element = options.element;
