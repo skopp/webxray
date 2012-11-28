@@ -1,5 +1,7 @@
 /* Cascading Style Sheet (CSS) for Web X-Ray Goggles */
 
+@import url('jquery-ui.css');
+
 /* A base class that every goggles element should inherit from, to 
  * reset any bizarre and unexpected CSS set by the host page, e.g.
  * div { border: blue; }. */

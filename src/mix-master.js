@@ -168,15 +168,20 @@
           return;
         }
 
+        var startFunc = begin;
+        if (options.inPlace) {
+          startFunc = beginInPlace;
+        }
+
         if (sendFullDocument) {
-          $(document).uprootIgnoringWebxray(function (html) {
-            begin({
+          $(document).uprootIgnoringWebxray(function(html) {
+            startFunc({
               html: html,
               selector: $(document.body).pathTo(focused.getPrimaryElement())
             });
           });
         } else
-          begin(focusedHTML);
+          startFunc(focusedHTML);
 
         function begin(startHTML) {
           focused.unfocus();
@@ -221,6 +226,40 @@
                   }
                 }
               });
+            }
+          });
+        }
+
+        function beginInPlace(startHTML) {
+          focused.unfocus();
+          $(focusedElement).addClass('webxray-hidden');
+
+          jQuery.morphElementIntoInPlaceDialog({
+            input: input,
+            body: options.body,
+            element: focusedElement,
+            startHTML: startHTML,
+            onChange: function(container, endHTML) {
+              var html = endHTML.replace(/u00a0/g, " ");
+              var newContent = self.replaceElement(focusedElement, html);
+
+              newContent.addClass('webxray-hidden');
+              $(focusedElement).removeClass('webxray-hidden');
+              jQuery.morphInPlaceDialogIntoElement({
+                dialog: container,
+                input: input,
+                element: newContent,
+                onDone: function() {
+                  newContent.reallyRemoveClass('webxray-hidden');
+                  container.dialog('close');
+                  input.activate();
+                }
+              });
+            },
+            onDone: function(container) {
+              $(focusedElement).reallyRemoveClass('webxray-hidden');
+              container.dialog('close');
+              input.activate();
             }
           });
         }

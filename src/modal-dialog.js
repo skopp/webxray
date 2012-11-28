@@ -149,6 +149,39 @@
         });        
       });
     },
+    morphElementIntoInPlaceDialog: function(options) {
+      var input = options.input;
+      input.deactivate();
+
+      alert(JSON.stringify(options.startHTML));
+      var container = $('<div></div>').append(
+        $('<textarea></textarea>', {id: 'remix-node-text'})
+      );
+
+      container.dialog({
+        modal: true,
+        show: 'fade',
+        hide: 'fade',
+        title: 'Remix Node',
+        buttons: [
+          {
+            text: "Ok",
+            click: function() {
+              options.onChange(container, $('#remix-node-text').val());
+            }
+          },
+          {
+            text: "Cancel",
+            click: function() {
+              options.onDone(container);
+            }
+          }
+        ],
+        close: function() {
+          options.onDone(container);
+        }
+      });
+    },
     morphDialogIntoElement: function(options) {
       var element = options.element;
       var dialog = options.dialog;
@@ -172,6 +205,9 @@
           });
         });
       });
+    },
+    morphInPlaceDialogIntoElement: function(options) {
+      options.onDone();
     }
   });
 })(jQuery);

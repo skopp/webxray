@@ -345,7 +345,8 @@
             mixMaster.replaceFocusedElementWithDialog({
               input: self,
               dialogURL: jQuery.webxraySettings.url("easyRemixDialogURL"),
-              sendFullDocument: true
+              sendFullDocument: false,
+              inPlace: true
             });
           }
         },
