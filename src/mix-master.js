@@ -252,6 +252,7 @@
                 onDone: function() {
                   newContent.reallyRemoveClass('webxray-hidden');
                   container.dialog('close');
+                  container.remove();
                   input.activate();
                 }
               });
@@ -259,6 +260,7 @@
             onDone: function(container) {
               $(focusedElement).reallyRemoveClass('webxray-hidden');
               container.dialog('close');
+              container.remove();
               input.activate();
             }
           });

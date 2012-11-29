@@ -165,7 +165,7 @@
 
       var editor = ace.edit('remix-node-text');
       editor.setTheme('ace/theme/monokai');
-      editor.setValue(options.startHTML);
+      editor.setValue(style_html(options.startHTML, {indent_size: 2}));
 
       var session = editor.getSession();
       session.setMode('ace/mode/html');
@@ -176,9 +176,9 @@
         modal: true,
         show: 'fade',
         hide: 'fade',
-        width: 600,
-        height: 300,
-        title: 'Remix Node',
+        width: 800,
+        height: 400,
+        title: 'Edit Node',
         buttons: [
           {
             text: "Ok",

@@ -6,6 +6,7 @@
     "src/ace.js"
   , "src/ace-mode-html.js"
   , "src/ace-theme-monokai.js"
+  , "src/beautify-html.js"
   , "src/intro.js"
   , "src/json2.js"
   , "src/json.js"
