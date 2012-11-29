@@ -163,10 +163,14 @@
       container.append(editbox);
       $(document.body).append(container);
 
-      var editor = ace.edit("remix-node-text");
-      editor.setTheme("ace/theme/monokai");
-      editor.getSession().setMode("ace/mode/xml");
+      var editor = ace.edit('remix-node-text');
+      editor.setTheme('ace/theme/monokai');
       editor.setValue(options.startHTML);
+
+      var session = editor.getSession();
+      session.setMode('ace/mode/html');
+      session.setUseWrapMode(true);
+      session.setWrapLimitRange();
 
       container.dialog({
         modal: true,
