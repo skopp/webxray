@@ -4,6 +4,8 @@
   "compiledFile": "/webxray.js",
   "compiledFileParts": [
     "src/ace.js"
+  , "src/ace-mode-html.js"
+  , "src/ace-theme-monokai.js"
   , "src/intro.js"
   , "src/json2.js"
   , "src/json.js"
