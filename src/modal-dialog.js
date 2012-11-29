@@ -164,6 +164,7 @@
       $(document.body).append(container);
 
       var editor = ace.edit('remix-node-text');
+      editor.setFontSize(14);
       editor.setTheme('ace/theme/monokai');
       editor.setValue(style_html(options.startHTML, {indent_size: 2}));
 
@@ -201,6 +202,7 @@
         }
       });
 
+      editor.clearSelection();
     },
     morphDialogIntoElement: function(options) {
       var element = options.element;
