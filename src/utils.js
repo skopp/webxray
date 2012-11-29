@@ -204,12 +204,12 @@
     // Create and return a div that floats above the first
     // matched element.
     overlay: function overlay() {
-      var html = this.get(0).ownerDocument.documentElement;
+      var body = this.get(0).ownerDocument.body;
       var overlay = $('<div class="webxray-base webxray-overlay">' +
                       '&nbsp;</div>');
 
       overlay.css(this.bounds());
-      $(html).append(overlay);
+      $(body).append(overlay);
       return overlay;
     },
     // Like jQuery.append(), but accepts an arbitrary number of arguments,
